@@ -35,6 +35,7 @@ This will output:
 
 ## Planned Features
 
+* Object as argument
 * Multilanguage System
 * Multiple files for specific sites
 * Database Connection (SQL/MongoDB)
