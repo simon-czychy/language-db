@@ -8,5 +8,9 @@
   },
   "author": "Simon Czychy",
   "license": "MIT",
-  "git": "https://github.com/simon-czychy/language-db.git"
+  "repository" :
+  {
+	"type" : "git",
+	"url" : "https://github.com/simon-czychy/language-db.git"
+  }
 }
