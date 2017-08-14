@@ -8,6 +8,7 @@ module.exports = class LanguageDB {
 
 	constructor(database) {
 		this.keys = [];
+		this.languageCode = "en";
 		this.load(path.resolve(database));
 	}
 
@@ -19,10 +20,19 @@ module.exports = class LanguageDB {
 	}
 
 	get(key) {
-		if(key in this.keys)
-			return this.keys[key];
-		else
-			return "No such key";
+		if(this.languageCode in this.keys) {
+			let language = this.keys[this.languageCode]
+			if(key in language) {
+				return language[key];
+			}
+			return "Key '" + key + "' not found in language '" + this.languageCode + "'";
+		}
+		return "No such languagecode found: " + this.languageCode;
+
+	}
+
+	setLanguageCode(code) {
+		this.languageCode = code;
 	}
 
 }
