@@ -9,11 +9,21 @@ module.exports = class LanguageDB {
 	constructor(database) {
 		this.keys = [];
 		this.languageCode = "en";
-		this.load(path.resolve(database));
+		this.load(database);
 	}
 
 	load(database) {
-		let values = require(database);
+		let values = {};
+		if (typeof database === "string") {
+			values = require(path.resolve(database));
+		}
+		else if((typeof database === "object")) {
+			values = database;
+		}
+		else {
+			throw new Error("Could not load database. Given: " + database);
+		}
+
 		for(var key in values) {
 			this.keys[key] = values[key];
 		}
