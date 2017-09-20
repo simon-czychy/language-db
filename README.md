@@ -14,7 +14,7 @@ $ npm install language-db
 
 ### General Usage
 
-Setup a JSOn-File and store you language keys e.g.:
+Setup a JSON-File and store you language keys e.g.:
 
 
 ```javascript
@@ -50,22 +50,66 @@ translate.setLanguageCode("de");
 This will output:
 > Das ist ein einleitender Satz.
 
-As an alternative you can pass an javascript-object as argument to be loaded:
+## API
+
+### LDB.load(database), LDB.construtor(database)
+* database [string] | [Object] | [Array]
+
+The constructor calls the load() function if the passed argument database is given. If not you need to load your languagekeys with the load function.
+You can use the load function anytime to load additional langugekeys.
+
+#### Example:
+
 
 ```javascript
 var translate = new LDB({
     "en": {
-        "intro": "this is an intro text",
-        "content": "welcome to xyz page blabla"
-    },
-    "de": {
-        "intro": "Das ist ein einleitender Satz.",
-        "content": "Willkommen auf Seite XYZ Blabla."
+        "intro": "this is an intro text"
     }
 }
 );
+
+translate.load("./de.json");
+translate.load(["./de.json", "./it.json"]);
 ```
 
+### LDB.setLanguageCode(code)
+* code [string]
+
+You can set the languagecode to get the right translation for your key.
+
+#### Example:
+
+
+```javascript
+var translate = new LDB({
+    "en": {
+        "intro": "this is an intro text"
+    }
+}
+);
+
+translate.setLanguageCode("en");
+```
+
+### LDB.get(key)
+* key [string] | (default: en)
+
+You can get the translation by the passed key with the get() function.
+
+#### Example:
+
+
+```javascript
+var translate = new LDB({
+    "en": {
+        "intro": "this is an intro text"
+    }
+}
+);
+
+translate.get("intro");
+```
 
 
 ## Planned Features
