@@ -12,6 +12,8 @@ $ npm install language-db
 
 ## Usage
 
+### General Usage
+
 Setup a JSOn-File and store you language keys e.g.:
 
 
@@ -32,8 +34,8 @@ Setup a JSOn-File and store you language keys e.g.:
 Now load it up in your app e.g.:
 
 ```javascript
-var LDB = require("language-db");
-var translate = new LDB("./db.json");
+let LDB = require("language-db");
+let translate = new LDB("./db.json");
 translate.setLanguageCode("en");
 console.log(translate.get("intro"));
 ```
@@ -48,8 +50,24 @@ translate.setLanguageCode("de");
 This will output:
 > Das ist ein einleitender Satz.
 
+As an alternative you can pass an javascript-object as argument to be loaded:
+
+```javascript
+var translate = new LDB({
+    "en": {
+        "intro": "this is an intro text",
+        "content": "welcome to xyz page blabla"
+    },
+    "de": {
+        "intro": "Das ist ein einleitender Satz.",
+        "content": "Willkommen auf Seite XYZ Blabla."
+    }
+}
+);```
+
+
+
 ## Planned Features
 
-* Object as argument
 * Multiple files for specific sites
 * Database Connection (SQL/MongoDB)
