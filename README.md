@@ -63,7 +63,8 @@ var translate = new LDB({
         "content": "Willkommen auf Seite XYZ Blabla."
     }
 }
-);```
+);
+```
 
 
 
