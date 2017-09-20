@@ -114,5 +114,4 @@ translate.get("intro");
 
 ## Planned Features
 
-* Multiple files for specific sites
 * Database Connection (SQL/MongoDB)
