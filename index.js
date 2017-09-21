@@ -57,11 +57,10 @@ module.exports = class LanguageDB {
 					}
 				}
 			}
-			if (key && !value) {
+			else if (key && !value) {
 				if ( typeof key === "object" && typeof key !== "string" ) {
-					var arr = Object.keys(key);
-					if (typeof arr[0] === "string" && typeof arr[1] === "string")  {
-						this.keys[arr[0]] = arr[1];
+					if (typeof Object.keys(key)[0] === "string" && typeof Object.values(key)[0] === "string")  {
+						this.keys[languageCode][Object.keys(key)[0]] = Object.values(key)[0];
 					}
 				}
 			}

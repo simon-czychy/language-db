@@ -125,11 +125,11 @@ You can add an key-value pair on runtime with the add() function. BEWARE: The ke
 var translate = new LDB({"en": {"intro":"this is an intro text"}});
 translate.setLanguageCode("en");
 translate.add("en", "text", "this is not the intro text")
-translate.add("en", { "text": "this is not the intro text" })
+translate.add("en", { "text": "this is not the intro text, and has been overriden" })
 console.log(translate.get("text"));
 ```
 This will output:
-> this is an intro text
+> this is an intro text, and has been overriden
 
 
 ## Planned Features
