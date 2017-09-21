@@ -111,6 +111,26 @@ var translate = new LDB({
 translate.get("intro");
 ```
 
+### LDB.add(languageCode, key [, value])
+* langaueCode [string]
+* key [string] | [Object]
+* [optional if key is an Object] value [string]
+
+You can add an key-value pair on runtime with the add() function. BEWARE: The keye added on runtime will be lost after restarting your application, they are not saved to your file.
+
+#### Example:
+
+
+```javascript
+var translate = new LDB({"en": {"intro":"this is an intro text"}});
+translate.setLanguageCode("en");
+translate.add("en", "text", "this is not the intro text")
+translate.add("en", { "text": "this is not the intro text" })
+console.log(translate.get("text"));
+```
+This will output:
+> this is an intro text
+
 
 ## Planned Features
 

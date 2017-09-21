@@ -41,8 +41,33 @@ module.exports = class LanguageDB {
 	}
 
 	addKeys(values) {
-		for(let key in values) {
-			this.keys[key] = values[key];
+		if (values) {
+			for(let key in values) {
+				this.keys[key] = values[key];
+			}
+		}
+
+	}
+	add(languageCode, key, value) {
+		if (languageCode) {
+			if (key && value) {
+				if (typeof key === "string" && typeof value === "string")  {
+					if (key.length > 0 && value.length > 0) {
+						this.keys[languageCode][key] = value;
+					}
+				}
+			}
+			if (key && !value) {
+				if ( typeof key === "object" && typeof key !== "string" ) {
+					var arr = Object.keys(key);
+					if (typeof arr[0] === "string" && typeof arr[1] === "string")  {
+						this.keys[arr[0]] = arr[1];
+					}
+				}
+			}
+		}
+		else {
+			throw new Error("languageCode need to be set when adding a new key!");
 		}
 	}
 
