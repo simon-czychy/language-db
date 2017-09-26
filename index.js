@@ -9,6 +9,9 @@ module.exports = class LanguageDB {
 	constructor(database) {
 		this.keys = [];
 		this.languageCode = "en";
+		this.engine = undefined;
+		this.usingDatabase = false;
+		this.connectionDetails = undefined;
 		if(database)
 			this.load(database);
 	}
@@ -49,6 +52,9 @@ module.exports = class LanguageDB {
 
 	}
 	add(languageCode, key, value) {
+		if(this.usingDatabase) {
+			throw new Error("Adding Keys to MYSQL Database is not supported yet.");
+		}
 		if (languageCode) {
 			if (key && value) {
 				if (typeof key === "string" && typeof value === "string")  {
@@ -87,16 +93,33 @@ module.exports = class LanguageDB {
 		throw new Error("Given filepath is not a string: '" + file + "'");
 	}
 
-	get(key) {
-		if(this.languageCode in this.keys) {
-			let language = this.keys[this.languageCode]
-			if(key in language) {
-				return language[key];
-			}
-			throw new Error("Key '" + key + "' not found in language '" + this.languageCode + "'");
-		}
-		throw new Error("No such languagecode found: " + this.languageCode);
+	_isString(value) {
+		return typeof value === "string";
+	}
 
+	get(key, cb) {
+		if(this.usingDatabase) {
+			if(this.engine) {
+				let DB_ENGINE = require("./" + this.engine);
+				let engine = new DB_ENGINE(this.connectionDetails);
+				engine.get(key, this.languageCode, function(err, result) {
+					if(err)
+						throw new Error(err);
+					cb(result);
+					engine.end();
+				});
+			}
+		}
+		else {
+			if(this.languageCode in this.keys) {
+				let language = this.keys[this.languageCode]
+				if(key in language) {
+					return language[key];
+				}
+				throw new Error("Key '" + key + "' not found in language '" + this.languageCode + "'");
+			}
+			throw new Error("No such languagecode found: " + this.languageCode);
+		}
 	}
 
 	setLanguageCode(code) {
@@ -107,6 +130,19 @@ module.exports = class LanguageDB {
 		console.log(this.keys);
 	}
 
+	use(type) {
+		if (type && this._isString(type)) {
+			if (type.toLowerCase() === "mysql" && type.length > 0) {
+				this.engine = type.toLowerCase();
+				this.usingDatabase = true;
+			}
+		}
+	}
 
+	setup(details) {
+		if (details) {
+			this.connectionDetails = details;
+		}
+	}
 
 }

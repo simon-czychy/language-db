@@ -3,11 +3,21 @@
 A simple lightweight package for handling langauge keys.
 
 
+## Why language-db?
+
+Langauge-db is a simple lightweight package for handling langauge keys. You can load up langauge key value pairs from files, arrays and objects.
+### Features
+
+* Lightweight
+* Simple usage
+* Compatible with [mysql2](https://www.npmjs.com/package/mysql2)
+* Uses modern ES6 code
+
 ## Install
 
 
 ```bash
-$ npm install language-db
+$ npm install language-db --save
 ```
 
 ## Usage
@@ -93,7 +103,7 @@ translate.setLanguageCode("en");
 ```
 
 ### LDB.get(key)
-* key [string] | (default: en)
+* key [string]
 
 You can get the translation by the passed key with the get() function.
 
@@ -131,7 +141,67 @@ console.log(translate.get("text"));
 This will output:
 > this is an intro text, and has been overriden
 
+## Using MySQL
+
+You can use an MySQL Database to get laguagekeys from it. Language-db uses a default schema but you can also add your own selecting schema.
+* Default Schema ![Default Schema](/examples/default_schema.png?raw=true "Default Schema")
+* Custom Schema ![Custom Schema](/examples/custom_schema.png?raw=true "Default Schema")
+
+### Setting up MySQL Connection
+
+
+After you required language-db, create an object of language-db without parameters. Tell it to use mysql as database type. Finally call the setup() function and passan object with your connection details. This example will use the default schema.
+
+```javascript
+var translate = new LDB();
+var db = translate.use("mysql");
+translate.setup({
+	"host": "localhost",
+	"user": "root",
+	"password": "",
+	"database": "language_db"
+});
+```
+
+#### Using your own schema
+
+To use you own schema just pass an query template to your connection details e.g.:
+```javascript
+translate.setup({
+	"host": "localhost",
+	"user": "root",
+	"password": "12345",
+	"database": "language_db",
+	"query": "SELECT value FROM ldb WHERE code = $CODE AND langkey = $KEY"
+});
+```
+**IMPORTANT: You need to sepcify $CODE where your languageCode goes and $KEY where your key goes.**
+
+## MySQL API
+
+### LDB.get(key, callback)
+* key [string]
+* callback [fn(result)]
+
+You can get the translation by the passed key with the get() function. If using the get function while MySQL is used, the function is asnyc to wait for an answer.
+
+##### Example:
+
+
+```javascript
+translate.setLanguageCode("en");
+//Now the get() function needs to be async
+translate.get("intro", function(result) {
+	if(!result)
+		throw new Error("No result recieved!")
+	console.log((result));
+});
+```
+This will output:
+> this is an intro text
+
 
 ## Planned Features
 
-* Database Connection (SQL/MongoDB)
+* Database Connection (MongoDB)
+* MySQL(Add keys and languages)
