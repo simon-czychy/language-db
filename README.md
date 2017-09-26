@@ -144,8 +144,8 @@ This will output:
 ## Using MySQL
 
 You can use an MySQL Database to get laguagekeys from it. Language-db uses a default schema but you can also add your own selecting schema.
-* Default Schema ![Default Schema](/examples/default_schema.png?raw=true "Default Schema")
-* Custom Schema ![Custom Schema](/examples/custom_schema.png?raw=true "Default Schema")
+[Default Schema](/examples/default_schema.PNG) |
+[Custom Schema](/examples/custom_schema.PNG)
 
 ### Setting up MySQL Connection
 
