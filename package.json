@@ -1,6 +1,6 @@
 {
   "name": "language-db",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "A simple lightweight i18n package for handling langauge keys.",
   "main": "index.js",
   "scripts": {
