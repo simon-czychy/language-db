@@ -8,7 +8,7 @@ var db = translate.use("mysql");
 translate.setup({
 	"host": "localhost",
 	"user": "root",
-	"pass": "12345",
+	"password": "12345",
 	"database": "language_db"
 });
 translate.setLanguageCode("en");
