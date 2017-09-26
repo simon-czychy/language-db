@@ -87,7 +87,6 @@ DROP TABLE IF EXISTS `language_key`;
 CREATE TABLE `language_key` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `langkey` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -98,7 +97,7 @@ CREATE TABLE `language_key` (
 
 LOCK TABLES `language_key` WRITE;
 /*!40000 ALTER TABLE `language_key` DISABLE KEYS */;
-INSERT INTO `language_key` VALUES (1,'intro',NULL),(2,'hello',NULL);
+INSERT INTO `language_key` VALUES (1,'intro'),(2,'hello');
 /*!40000 ALTER TABLE `language_key` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,4 +136,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-26 22:03:56
+-- Dump completed on 2017-09-26 22:50:14
