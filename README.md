@@ -20,6 +20,10 @@ Langauge-db is a simple lightweight package for handling langauge keys. You can 
 $ npm install language-db --save
 ```
 
+```bash
+$ yarn add language-db
+```
+
 ## Usage
 
 ### General Usage
