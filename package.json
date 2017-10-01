@@ -4,7 +4,7 @@
   "description": "A simple lightweight i18n package for handling langauge keys.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc --reporter=html --reporter=text mocha tests/"
   },
   "author": "Simon Czychy",
   "license": "MIT",
@@ -22,5 +22,9 @@
     "key",
     "i18n",
     "language-db"
-  ]
+  ],
+  "devDependencies": {
+    "mocha": "^3.5.3",
+    "nyc": "^11.2.1"
+  }
 }
