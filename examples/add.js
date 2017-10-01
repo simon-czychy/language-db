@@ -7,4 +7,5 @@ const translate = new LDB({"en": {"intro":"this is an intro text"}});
 translate.setLanguageCode("en");
 //translate.add("en", "text", "this is not the intro text")
 translate.add("en", { "text": "this is not the intro text, and has been overriden" })
+translate.add("en",  "text" ,"this is not the intro text, and has been overriden" )
 console.log(translate.get("text"));
