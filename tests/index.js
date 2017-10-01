@@ -7,20 +7,19 @@ describe('core', function() {
 			it('should set the value to given parameter', function() {
 				let translate = new Core();
 				translate.use("mysql");
-				translate.setup({
-					"host": "TESTHOST",
-					"user": "TESTUSER",
-					"password": "TESTPASS",
-					"database": "TESTDB",
-					"query": "TESTQUERY"
-				});
 				assert.deepEqual({
 					"host": "TESTHOST",
 					"user": "TESTUSER",
 					"password": "TESTPASS",
 					"database": "TESTDB",
 					"query": "TESTQUERY"
-				}, translate.getConnectionDetails());
+				}, translate.setup({
+					"host": "TESTHOST",
+					"user": "TESTUSER",
+					"password": "TESTPASS",
+					"database": "TESTDB",
+					"query": "TESTQUERY"
+				}));
 			});
 		});
 	});
