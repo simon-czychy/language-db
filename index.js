@@ -1,6 +1,5 @@
 "use strict";
 
-const KEY = require("./key");
 const fs = require('fs');
 const path = require("path");
 
@@ -142,6 +141,7 @@ module.exports = class LanguageDB {
 	setup(details) {
 		if (details) {
 			this.connectionDetails = details;
+			return this.connectionDetails;
 		}
 	}
 
